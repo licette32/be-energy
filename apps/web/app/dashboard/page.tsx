@@ -16,6 +16,14 @@ export default function DashboardPage() {
   const { isConnected, userProfile } = useWallet()
   const { t } = useI18n()
   const router = useRouter()
+  
+  // DEBUG: verificar env vars
+  console.log('CONTRACT ADDRESSES:', {
+    token: process.env.NEXT_PUBLIC_ENERGY_TOKEN_CONTRACT,
+    distribution: process.env.NEXT_PUBLIC_ENERGY_DISTRIBUTION_CONTRACT
+  })
+  
+
   const [copied, setCopied] = useState(false)
   const [userStockKwh, setUserStockKwh] = useState(mockUser.stockKwh)
   const [transactions, setTransactions] = useState(mockTransactions)
