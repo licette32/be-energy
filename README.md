@@ -125,28 +125,6 @@ Outputs: `target/wasm32v1-none/release/*.wasm`
 
 ---
 
-## Current Status
-
-### ✅ Completed
-
-- [x] Monorepo structure with Turborepo
-- [x] 3 Soroban contracts deployed to testnet
-- [x] Next.js 16 frontend with wallet connection
-- [x] All routes working (dashboard, marketplace, activity)
-- [x] i18n support (EN/ES)
-- [x] Dark mode
-- [x] Deployed to Vercel production
-
-### 🚧 In Development (See [Issues](https://github.com/BuenDia-Builders/be-energy/issues))
-
-- [ ] Connect dashboard to real contract data ([#1](https://github.com/BuenDia-Builders/be-energy/issues/1))
-- [ ] Marketplace P2P trading integration ([#2](https://github.com/BuenDia-Builders/be-energy/issues/2))
-- [ ] Admin token minting interface ([#3](https://github.com/BuenDia-Builders/be-energy/issues/3))
-- [ ] Transaction history from Horizon API ([#4](https://github.com/BuenDia-Builders/be-energy/issues/4))
-- [ ] Extract shared Stellar package ([#5](https://github.com/BuenDia-Builders/be-energy/issues/5))
-
----
-
 ## Tech Stack
 
 | Layer | Technology |
