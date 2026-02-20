@@ -13,7 +13,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { mockUser, mockConsumption, mockStock, mockTransactions, mockEnergyRanking, generateIdenticon } from "@/lib/mock-data"
 
 export default function DashboardPage() {
-  const { isConnected, userProfile } = useWallet()
+  const { isConnected, userProfile, address } = useWallet()
   const { t } = useI18n()
   const router = useRouter()
   
@@ -25,6 +25,7 @@ export default function DashboardPage() {
   
 
   const [copied, setCopied] = useState(false)
+  const shortAddress = address ? `${address.slice(0, 4)}...${address.slice(-4)}` : null
   const [userStockKwh, setUserStockKwh] = useState(mockUser.stockKwh)
   const [transactions, setTransactions] = useState(mockTransactions)
 
@@ -67,13 +68,12 @@ export default function DashboardPage() {
   }
 
   const handleCopyAddress = async () => {
+    if (!address) return
     try {
-      await navigator.clipboard.writeText(mockUser.address)
+      await navigator.clipboard.writeText(address)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error("Failed to copy:", err)
-    }
+    } catch (err) {console.error("Failed to copy:", err)}
   }
 
   if (!isConnected) {
@@ -111,11 +111,12 @@ export default function DashboardPage() {
                       {t("dashboard.welcome")} {userProfile.name}!
                     </h2>
                     <div className="flex items-center gap-2">
-                      <p className="text-muted-foreground text-sm md:text-base">{mockUser.shortAddress}</p>
+                      <p className="text-muted-foreground text-sm md:text-base">{shortAddress || "No conectado"}</p>
                       <button
                         onClick={handleCopyAddress}
                         className="text-muted-foreground hover:text-primary transition-colors p-1 rounded hover:bg-primary/10"
                         title={copied ? t("common.copied") : t("common.copyAddress")}
+                        disabled={!address}
                       >
                         {copied ? <Check className="w-4 h-4 text-success" /> : <Copy className="w-4 h-4" />}
                       </button>
